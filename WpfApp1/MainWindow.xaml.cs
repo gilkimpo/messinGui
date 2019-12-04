@@ -22,6 +22,7 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public List<Team> team = new List<Team>();
+        public List<Function> function = new List<Function>();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +36,14 @@ namespace WpfApp1
             team.Add(new Team { FirstName = "Gina" });
             team.Add(new Team { FirstName = "Gil" });
             mycombox.ItemsSource = team;
+            function.Add(new Function { DoSomethingPlease = "This should do something" });
+            function.Add(new Function { DoSomethingPlease = "i wish this would do somthing too" });
+            function.Add(new Function { DoSomethingPlease = "guess what i'm thinking..." });
+            otherbox.ItemsSource = function;
+        }
+        public class Function
+        {
+            public string DoSomethingPlease { get; set; }
         }
         public class Team
         {
@@ -54,7 +63,6 @@ namespace WpfApp1
                 
             }                       
                    
-
         }
        //testing how to get mult buttons on
 
