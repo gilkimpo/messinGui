@@ -1,0 +1,19 @@
+Animal Farm,George Orwell,1,12/18/2019
+Canticle for Leibovitz,Herman Miller,1,12/18/2019
+Crime and Punishment,Fyodor Dostieveski,1,12/18/2019
+Great Expectations,Charles Dickens,0
+Harry Potter and the Sorcerer's Stone,J.K Rowling,0
+HitchHikers Guide to the Galaxy,Douglas Adams,1,12/16/2019
+Hunger Games,Suzanne Collins,0
+In search of Schrodinger's Cat,John Grippin,0
+Little Women,Luisa May Alcott,1,12/16/2019
+Lord of the Rings,J.R.R.Tolkien,0
+Man's Search for Meaning,Victor Frank,1,12/16/2019
+Ready Player One,Ernest Cline,0
+The Bible,God,0
+The Grapes of Wrath,John Steinbeck,1,12/09/2019
+The Lord of the Flies,William Golding:,1,12/15/2019
+The Martian,Andy Weir,0
+The Old Man and the Sea,Ernest Hemingway,1,12/15/2019
+The Outsiders,S.E.Hinton,1,12/09/2019
+Time Machine,H.G. Wells,0

@@ -8,25 +8,36 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Height="580" HorizontalAlignment="Left" Width="1398">
         <Button x:Name="this_is_a_button" Content="this is a button
-                " HorizontalAlignment="Left" Margin="195,143,0,0" VerticalAlignment="Top" Height="131" Width="128" Click="Button_Click"/>
-        <Button Content="this also is a button" HorizontalAlignment="Left" Margin="195,310,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="49" Width="101"/>
-        <Label Content="check me out
-               " HorizontalAlignment="Left" Margin="328,143,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Left" Height="300" Margin="533,10,0,0" VerticalAlignment="Top" Width="300" Source="C:\Users\gilki\source\repos\WpfApp1\WpfApp1\wp3300678decepticon.jpg"/>
-        <ComboBox x:Name="mycombox"  HorizontalAlignment="Left" Margin="533,268,0,0" VerticalAlignment="Top" Width="120">
+                " HorizontalAlignment="Left" Margin="56,54,0,0" VerticalAlignment="Top" Height="131" Width="128" Click="Button_Click"/>
+        <Button Content="this also is a button" HorizontalAlignment="Left" Margin="56,321,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="49" Width="101"/>
+
+
+       <ListView x:Name="mycombox"  HorizontalAlignment="Left" Margin="259,10,0,0" VerticalAlignment="Top" Width="560" Height="400" SelectionChanged="mycombox_SelectionChanged">
+          
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Name ="display" Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}"/>
+                        <TextBlock Text="    "/>
+                        <TextBlock Text="{Binding Author}"/>
+                        <TextBlock Text="    "/>
+                        <TextBlock Text="{Binding Status}"/>
+                        <TextBlock Text="    "/>
+                        <TextBlock Text="{Binding DueDate}"/>
+
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Content="Click here guys!>>>>" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="otherbox" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding FirstName}"/>
+                    <TextBlock Text="{Binding DoSomethingPlease}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Content="Click here guys!>>>>" HorizontalAlignment="Left" Margin="407,272,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="otherbox" HorizontalAlignment="Left" Margin="699,310,0,0" VerticalAlignment="Top" Width="120">
-        <ComboBox.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding DoSomethingPlease}"/>
-            </DataTemplate>
-        </ComboBox.ItemTemplate>
         </ComboBox>
 
 
