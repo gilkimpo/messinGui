@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="611" Width="968">
     <Grid Height="580" HorizontalAlignment="Center" Width="968">
-        <Button x:Name="DisplayList" Content="Display Current Invetory
+        <Button x:Name="DisplayList" Content="Display Current Inventory
                 " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="133" Click="Button_Click"/>
         <Button Content="Search" HorizontalAlignment="Left" Margin="153,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="18" Width="63"/>
 

@@ -111,7 +111,7 @@ namespace WpfApp1
             //
             public static void BookToTxtFile(List<Book> books)
             {
-                StreamWriter bks = new StreamWriter(@"C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\booklist.txt");
+                StreamWriter bks = new StreamWriter(@"C:\Users\gilki\source\repos\dec06librarymidtermpull\messinGui\WpfApp1\booklist.txt");
 
                 foreach (Book book in books)
                 {
@@ -135,7 +135,7 @@ namespace WpfApp1
 
                 List<string> bkList = new List<string>();
 
-                StreamReader sr = new StreamReader(@"C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\booklist.txt");
+                StreamReader sr = new StreamReader(@"C:\Users\gilki\source\repos\dec06librarymidtermpull\messinGui\WpfApp1\booklist.txt");
 
                 string line = sr.ReadLine();
 
@@ -660,13 +660,15 @@ namespace WpfApp1
             int ind = mycombox.SelectedIndex;
             if (currentList[ind].Status == "On Shelf")
             {
-                MessageBoxResult mmsg = MessageBox.Show("u wanna check out book?", "hello", MessageBoxButton.YesNoCancel);
+                MessageBoxResult mmsg = MessageBox.Show("Would you like to check out a book?", "Hello!", MessageBoxButton.YesNoCancel);
                 if (mmsg == MessageBoxResult.Yes)
                 {
                     Menu.CheckoutBook(currentList[ind]);
                     Book.BookToTxtFile(Book.BookList);
                     mycombox.Items.Refresh();
+                    MessageBoxResult checkedoutBook = MessageBox.Show($"You have checked out {currentList[ind].title}  ", "Thank you!", MessageBoxButton.OK);
                 }
+               
                 else if (mmsg == MessageBoxResult.No)
                 {
                     mycombox.Items.Refresh();
@@ -679,12 +681,14 @@ namespace WpfApp1
             }
             else if (currentList[ind].Status == "Checked Out")
             {
-                MessageBoxResult mmsg = MessageBox.Show("Do you want to return the book?", "hello", MessageBoxButton.YesNoCancel);
+                MessageBoxResult mmsg = MessageBox.Show("Do you want to return the book?", "Hello", MessageBoxButton.YesNoCancel);
                 if (mmsg == MessageBoxResult.Yes)
                 {
                     Menu.ReturnBook(currentList[ind]);
                     Book.BookToTxtFile(Book.BookList);
                     mycombox.Items.Refresh();
+                    MessageBoxResult returnedBook = MessageBox.Show($"You have now returned {currentList[ind].title}", "Thank you!", MessageBoxButton.OK);
+
 
                 }
             }

@@ -2,9 +2,9 @@ Animal Farm,George Orwell,On Shelf
 Canticle for Leibovitz,Herman Miller,Checked Out,12/18/2019
 Crime and Punishment,Fyodor Dostieveski,Checked Out,12/18/2019
 Great Expectations,Charles Dickens,On Shelf
-Harry Potter and the Sorcerer's Stone,J.K Rowling,Checked Out,12/19/2019
-HitchHikers Guide to the Galaxy,Douglas Adams,Checked Out,12/16/2019
-Hunger Games,Suzanne Collins,On Shelf
+Harry Potter and the Sorcerer's Stone,J.K Rowling,On Shelf
+HitchHikers Guide to the Galaxy,Douglas Adams,On Shelf
+Hunger Games,Suzanne Collins,Checked Out,12/20/2019
 In search of Schrodinger's Cat,John Grippin,On Shelf
 Little Women,Luisa May Alcott,Checked Out,12/19/2019
 Lord of the Rings,J.R.R.Tolkien,Checked Out,12/19/2019
