@@ -32,21 +32,11 @@ namespace WpfApp1
         {
 
             InitializeComponent();
-            this.Title = "Whaddup suckas!";
+           
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             //just making list and class in main for now rather than creating class for itself
 
-            team.Add(new Team { FirstName = "Joseph" });
-            team.Add(new Team { FirstName = "Randy" });
-            team.Add(new Team { FirstName = "Gina" });
-            team.Add(new Team { FirstName = "Gil" });
-
-
-
-            function.Add(new Function { DoSomethingPlease = "This should do something" });
-            function.Add(new Function { DoSomethingPlease = "i wish this would do somthing too" });
-            function.Add(new Function { DoSomethingPlease = "guess what i'm thinking..." });
 
         }
         public class Function
@@ -60,23 +50,17 @@ namespace WpfApp1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            mycombox.ItemsSource = books;
+            currentList = books;
+            mycombox.ItemsSource = currentList;
         }
         //testing how to get mult buttons on
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (Validator.ValidateTitle(hello.Text, Book.BookList))
-            {
-                mycombox.ItemsSource = Search.GetBookListByKeyword(hello.Text);
-            }
 
-        }
         class Book
         {
             public string title;
             public string author;
-            public int status;
+            public string status;
             public string dueDate;
             public static List<Book> BookList = Book.TxtToBook(); //Creates a Static List
 
@@ -92,7 +76,7 @@ namespace WpfApp1
                 set { author = value; }
             }
 
-            public int Status
+            public string Status
             {
                 get { return status; }
                 set { status = value; }
@@ -109,14 +93,14 @@ namespace WpfApp1
             public Book() { }
 
 
-            public Book(string title, string author, int status)
+            public Book(string title, string author, string status)
             {
                 Title = title;
                 Author = author;
                 Status = status;
             }
 
-            public Book(string title, string author, int status, string dueDate)
+            public Book(string title, string author, string status, string dueDate)
             {
                 Title = title;
                 Author = author;
@@ -132,11 +116,11 @@ namespace WpfApp1
                 foreach (Book book in books)
                 {
                     string csv = "";
-                    if (book.Status == 1)
+                    if (book.Status == "Checked Out")
                     {
                         csv = $"{book.Title},{book.Author},{book.Status},{book.DueDate}";
                     }
-                    else if (book.Status == 0)
+                    else if (book.Status == "On Shelf")
                     {
                         csv = $"{book.Title},{book.Author},{book.Status}";
                     }
@@ -164,13 +148,13 @@ namespace WpfApp1
                 foreach (string bk in bkList)
                 {
                     string[] bkArray = bk.Split(',');
-                    if (bkArray[2] == "1")
+                    if (bkArray[2] == "Checked Out")
                     {
-                        tempBookList.Add(new Book(bkArray[0], bkArray[1], 1, bkArray[3]));
+                        tempBookList.Add(new Book(bkArray[0], bkArray[1], "Checked Out", bkArray[3]));
                     }
-                    else if (bkArray[2] == "0")
+                    else if (bkArray[2] == "On Shelf")
                     {
-                        tempBookList.Add(new Book(bkArray[0], bkArray[1], 0));
+                        tempBookList.Add(new Book(bkArray[0], bkArray[1], "On Shelf"));
                     }
                 }
                 sr.Close();
@@ -186,17 +170,18 @@ namespace WpfApp1
         {
 
 
-            public static Book GetBookByAuthorName(string titleByAuthor)
+            public static List<Book> GetBookByAuthorName(string titleByAuthor)
             {
+                List<Book> MatchingBooks = new List<Book>();
+
                 foreach (Book b in BookList)
                 {
                     if (b.Author.Contains(titleByAuthor))
                     {
-                        return b;  // returns book found by author name
+                        MatchingBooks.Add(b);
                     }
                 }
-                //if we are here we did not find the book; so return null
-                return null;
+                return MatchingBooks;
 
             }
 
@@ -276,69 +261,87 @@ namespace WpfApp1
                 return input;
             }
             //Validates whenever you need to check for Author
-            public static string ValidateAuthor(string author, List<Book> books)
+            public static bool ValidateAuthor(string author, List<Book> books)
             {
-                bool check = false;
-                while (check == false)
-                {
-                    try
-                    {
-                        foreach (Book b in books)
-                        {
-                            if (b.Author.Contains(author))
-                            {
-                                check = true;
-                            }
-                        }
-                        if (check == false)
-                        {
-                            Console.WriteLine("Please enter a valid author");
-                            author = Console.ReadLine();
-                        }
 
-                    }
-                    catch (FormatException ex)
+                try
+                {
+                    foreach (Book b in books)
                     {
-                        Console.WriteLine("Please enter a valid author");
-                        author = Console.ReadLine();
+                        if (b.Author.Contains(author))
+                        {
+                            return true;
+                        }
                     }
-                    catch (ArgumentNullException ex)
-                    {
-                        Console.WriteLine("Please enter a valid author");
-                        author = Console.ReadLine();
-                    }
-                    catch (NullReferenceException ex)
-                    {
-                        Console.WriteLine("Please enter a valid author");
-                        author = Console.ReadLine();
-                    }
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
                 }
-                return author;
+                catch (FormatException)
+                {
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
+
+                }
+                return false;
+
             }
 
-            public static string ValidateAuthor()
+            public static bool ValidateAuthor(string author)
             {
                 Regex authorValid = new Regex(@"[A-Za-z\s\.]");
-                string author = "";
-                bool check = false;
-                while (check == false)
+
+
+                if (string.IsNullOrEmpty(author))
                 {
-                    author = Console.ReadLine();
-                    if (string.IsNullOrEmpty(author))
-                    {
-                        Console.WriteLine("Please Enter a proper name.");
-                    }
-                    else if (!authorValid.IsMatch(author))
-                    {
-                        Console.WriteLine("Please Enter a proper name.");
-                    }
-                    else if (authorValid.IsMatch(author))
-                    {
-                        check = true;
-                    }
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
                 }
-                return author;
+                else if (!authorValid.IsMatch(author))
+                {
+                    MessageBox.Show("Please Enter a Valid Author", "Invalid Input", MessageBoxButton.OK);
+                }
+                else if (authorValid.IsMatch(author))
+                {
+                    return true;
+                }
+                return false;
             }
+            public static bool ValidateTitle(string title)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(title))
+                    {
+                        MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
+                        return false;
+                    }
+                   
+                }
+
+                catch (FormatException)
+                {
+                    MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
+
+                }
+                catch (ArgumentNullException)
+                {
+                    MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
+
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
+                }
+
+                return true;
+            }
+
+
             //Validates whenever you need to check for title
             public static bool ValidateTitle(string title, List<Book> books)
             {
@@ -420,14 +423,7 @@ namespace WpfApp1
 
         class Menu : Book
         {
-            //Main Menu
-            //Display List?
-            //-----Checkout Method
-            //Search by Keyword?
-            //-----Checkout Method
-            //Search by Author?
-            //-----Checkout Method
-            //Return a Book
+
 
             public static void DisplayBooks(List<Book> bookList)
             {
@@ -437,11 +433,11 @@ namespace WpfApp1
                 {
                     string available = "";
                     string tooLong = "";
-                    if (book.Status == 0)
+                    if (book.Status == "On Shelf")
                     {
                         available = "On Shelf";
                     }
-                    else if (book.Status == 1)
+                    else if (book.Status == "Checked Out")
                     {
                         available = "Checked Out";
                     }
@@ -470,14 +466,14 @@ namespace WpfApp1
 
             public static void CheckoutBook(Book book)
             {
-                book.Status = 1;
+                book.Status = "Checked Out";
                 book.DueDate = DateTime.Now.AddDays(14).ToString("MM/dd/yyyy");
 
             }
 
             public static void ReturnBook(Book book)
             {
-                book.Status = 0;
+                book.Status = "On Shelf";
                 book.DueDate = null;
 
             }
@@ -658,33 +654,45 @@ namespace WpfApp1
 
 
 
-
-
         private void mycombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
             int ind = mycombox.SelectedIndex;
-            if (Book.BookList[ind].Status == 0)
+            if (currentList[ind].Status == "On Shelf")
             {
                 MessageBoxResult mmsg = MessageBox.Show("u wanna check out book?", "hello", MessageBoxButton.YesNoCancel);
                 if (mmsg == MessageBoxResult.Yes)
                 {
-                    Menu.CheckoutBook(Book.BookList[ind]);
+                    Menu.CheckoutBook(currentList[ind]);
                     Book.BookToTxtFile(Book.BookList);
+                    mycombox.Items.Refresh();
                 }
+                else if (mmsg == MessageBoxResult.No)
+                {
+                    mycombox.Items.Refresh();
+                }
+                else if (mmsg == MessageBoxResult.Cancel)
+                {
+                    mycombox.Items.Refresh();
+                }
+
             }
-            else if (Book.BookList[ind].Status == 1)
+            else if (currentList[ind].Status == "Checked Out")
             {
                 MessageBoxResult mmsg = MessageBox.Show("Do you want to return the book?", "hello", MessageBoxButton.YesNoCancel);
                 if (mmsg == MessageBoxResult.Yes)
                 {
-                    Menu.ReturnBook(Book.BookList[ind]);
+                    Menu.ReturnBook(currentList[ind]);
                     Book.BookToTxtFile(Book.BookList);
+                    mycombox.Items.Refresh();
+
                 }
             }
             mycombox.Items.Refresh();
 
         }
+
+
 
         private void hello_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -694,6 +702,36 @@ namespace WpfApp1
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            mycombox.Items.Refresh();
+            if (Validator.ValidateAuthor(AuthorSearch.Text, Book.BookList))
+            {
+                currentList = Search.GetBookByAuthorName(AuthorSearch.Text);
+                mycombox.ItemsSource = currentList;
+            }
+
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            mycombox.Items.Refresh();
+            if (Validator.ValidateTitle(hello.Text, Book.BookList))
+            {
+                currentList = Search.GetBookListByKeyword(hello.Text);
+                mycombox.ItemsSource = currentList;
+            }
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (Validator.ValidateTitle(AddTitle.Text) && Validator.ValidateAuthor(AddAuthor.Text))
+            {
+                Book.BookList.Add(new Book(AddTitle.Text, AddAuthor.Text, "On Shelf"));
+                Book.BookToTxtFile(Book.BookList);
+            }
         }
     }
 }
