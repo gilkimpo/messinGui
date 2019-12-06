@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Height="580" HorizontalAlignment="Left" Width="1398">
-        <Button x:Name="this_is_a_button" Content="this is a button
-                " HorizontalAlignment="Left" Margin="56,54,0,0" VerticalAlignment="Top" Height="131" Width="128" Click="Button_Click"/>
-        <Button Content="this also is a button" HorizontalAlignment="Left" Margin="56,321,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="49" Width="101"/>
+        <Button x:Name="DisplayList" Content="Display Current Invetory
+                " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="133" Click="Button_Click"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="153,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="18" Width="63"/>
 
 
-       <ListView x:Name="mycombox"  HorizontalAlignment="Left" Margin="259,10,0,0" VerticalAlignment="Top" Width="560" Height="400" SelectionChanged="mycombox_SelectionChanged">
-          
+        <ListView x:Name="mycombox"  HorizontalAlignment="Left" Margin="259,37,0,0" VerticalAlignment="Top" Width="522" Height="373" SelectionChanged="mycombox_SelectionChanged">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Name ="display" Orientation="Horizontal">
@@ -31,14 +31,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Label Content="Click here guys!>>>>" HorizontalAlignment="Left" Margin="10,264,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="otherbox" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DoSomethingPlease}"/>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <Label Content="Search for a book by Keyword" HorizontalAlignment="Left" Margin="16,57,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="hello" HorizontalAlignment="Left" Margin="16,88,0,0" Text="Enter KeyWord" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="hello_TextChanged"/>
+        <Label Content="Search for a book by Author" HorizontalAlignment="Left" Margin="16,130,0,0" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Left" Margin="16,156,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="153,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.086,-0.359" Width="63"/>
+        <Label Content="Title                    Author               On Shelf                       Due Date" HorizontalAlignment="Left" Margin="259,6,0,0" VerticalAlignment="Top" Width="522"/>
 
 
 

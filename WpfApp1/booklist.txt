@@ -1,10 +1,10 @@
-Animal Farm,George Orwell,1,12/18/2019
+Animal Farm,George Orwell,0
 Canticle for Leibovitz,Herman Miller,1,12/18/2019
 Crime and Punishment,Fyodor Dostieveski,1,12/18/2019
 Great Expectations,Charles Dickens,0
 Harry Potter and the Sorcerer's Stone,J.K Rowling,0
 HitchHikers Guide to the Galaxy,Douglas Adams,1,12/16/2019
-Hunger Games,Suzanne Collins,0
+Hunger Games,Suzanne Collins,1,12/18/2019
 In search of Schrodinger's Cat,John Grippin,0
 Little Women,Luisa May Alcott,1,12/16/2019
 Lord of the Rings,J.R.R.Tolkien,0
