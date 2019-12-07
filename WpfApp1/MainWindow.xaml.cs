@@ -739,6 +739,15 @@ namespace WpfApp1
                 MessageBoxResult donatedBook = MessageBox.Show("Thank you for your donation!", "   ", MessageBoxButton.OK);
             }
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+           // teampic.ItemsSource = ; FIX THIS
+             currentList = books;
+            mycombox.ItemsSource = currentList;
+            MessageBoxResult exit = MessageBox.Show("Goodbye!", "   ", MessageBoxButton.OK);
+            Close();
+        }
     }
 }
 
