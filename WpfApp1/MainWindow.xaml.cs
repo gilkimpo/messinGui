@@ -23,11 +23,12 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<Team> team = new List<Team>();
-        public List<Function> function = new List<Function>();
+        //public List<Team> team = new List<Team>();
+        //public List<Function> function = new List<Function>();
 
         List<Book> books = Book.BookList;
         List<Book> currentList = new List<Book>();
+        List<Book> clear = new List<Book>();
         public MainWindow()
         {
 
@@ -39,19 +40,20 @@ namespace WpfApp1
 
 
         }
-        public class Function
-        {
-            public string DoSomethingPlease { get; set; }
-        }
-        public class Team
-        {
-            public string FirstName { get; set; }
-        }
+        //public class Function
+        //{
+        //    public string DoSomethingPlease { get; set; }
+        //}
+        //public class Team
+        //{
+        //    public string FirstName { get; set; }
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             currentList = books;
             mycombox.ItemsSource = currentList;
+            mycombox.Items.Refresh();
         }
         //testing how to get mult buttons on
 
@@ -111,7 +113,7 @@ namespace WpfApp1
             //
             public static void BookToTxtFile(List<Book> books)
             {
-                StreamWriter bks = new StreamWriter(@"C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\booklist.txt");
+                StreamWriter bks = new StreamWriter(@"..\..\..\booklist.txt");
 
                 foreach (Book book in books)
                 {
@@ -135,7 +137,7 @@ namespace WpfApp1
 
                 List<string> bkList = new List<string>();
 
-                StreamReader sr = new StreamReader(@"C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\booklist.txt");
+                StreamReader sr = new StreamReader(@"..\..\..\booklist.txt");
 
                 string line = sr.ReadLine();
 
@@ -478,17 +480,17 @@ namespace WpfApp1
 
             }
 
-            public static void Options()
-            {
-                BookList.Sort((a, b) => a.Title.CompareTo(b.Title));
-                Console.WriteLine("\nWelcome to the library. Please choose a number from the following menu");
-                Console.WriteLine("1. Search for a book to check out by AUTHOR NAME.");
-                Console.WriteLine("2. Search for a book to check out by a WORD IN THE TITLE.");
-                Console.WriteLine("3. Return a book.");
-                Console.WriteLine("4. Display Current Book List.");
-                Console.WriteLine("5. Donate a Book.");
-                Console.WriteLine("6. Exit the library app");
-            }
+            //public static void Options()
+            //{
+            //    BookList.Sort((a, b) => a.Title.CompareTo(b.Title));
+            //    Console.WriteLine("\nWelcome to the library. Please choose a number from the following menu");
+            //    Console.WriteLine("1. Search for a book to check out by AUTHOR NAME.");
+            //    Console.WriteLine("2. Search for a book to check out by a WORD IN THE TITLE.");
+            //    Console.WriteLine("3. Return a book.");
+            //    Console.WriteLine("4. Display Current Book List.");
+            //    Console.WriteLine("5. Donate a Book.");
+            //    Console.WriteLine("6. Exit the library app");
+            //}
 
             //public static void StartMenu()
             //{
@@ -653,47 +655,6 @@ namespace WpfApp1
         }
 
 
-
-        private void mycombox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            int ind = mycombox.SelectedIndex;
-            if (currentList[ind].Status == "On Shelf")
-            {
-                MessageBoxResult mmsg = MessageBox.Show("u wanna check out book?", "hello", MessageBoxButton.YesNoCancel);
-                if (mmsg == MessageBoxResult.Yes)
-                {
-                    Menu.CheckoutBook(currentList[ind]);
-                    Book.BookToTxtFile(Book.BookList);
-                    mycombox.Items.Refresh();
-                }
-                else if (mmsg == MessageBoxResult.No)
-                {
-                    mycombox.Items.Refresh();
-                }
-                else if (mmsg == MessageBoxResult.Cancel)
-                {
-                    mycombox.Items.Refresh();
-                }
-
-            }
-            else if (currentList[ind].Status == "Checked Out")
-            {
-                MessageBoxResult mmsg = MessageBox.Show("Do you want to return the book?", "hello", MessageBoxButton.YesNoCancel);
-                if (mmsg == MessageBoxResult.Yes)
-                {
-                    Menu.ReturnBook(currentList[ind]);
-                    Book.BookToTxtFile(Book.BookList);
-                    mycombox.Items.Refresh();
-
-                }
-            }
-            mycombox.Items.Refresh();
-
-        }
-
-
-
         private void hello_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -707,21 +668,25 @@ namespace WpfApp1
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             mycombox.Items.Refresh();
-            if (Validator.ValidateAuthor(AuthorSearch.Text, Book.BookList))
+            var text = AuthorSearch.Text;
+            if (Validator.ValidateAuthor(text, Book.BookList))
             {
-                currentList = Search.GetBookByAuthorName(AuthorSearch.Text);
+                currentList = Search.GetBookByAuthorName(text);
                 mycombox.ItemsSource = currentList;
             }
+            AuthorSearch.Text = "";
 
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             mycombox.Items.Refresh();
-            if (Validator.ValidateTitle(hello.Text, Book.BookList))
+            var text = hello.Text;
+            if (Validator.ValidateTitle(text, Book.BookList))
             {
-                currentList = Search.GetBookListByKeyword(hello.Text);
+                currentList = Search.GetBookListByKeyword(text);
                 mycombox.ItemsSource = currentList;
             }
+            hello.Text = "";
 
         }
 
@@ -731,7 +696,70 @@ namespace WpfApp1
             {
                 Book.BookList.Add(new Book(AddTitle.Text, AddAuthor.Text, "On Shelf"));
                 Book.BookToTxtFile(Book.BookList);
+                mycombox.Items.Refresh();
+                MessageBoxResult donatedBook = MessageBox.Show("Thank you for your donation!", "   ", MessageBoxButton.OK);
             }
+            AddTitle.Text = "";
+            AddAuthor.Text = "";
+            currentList = books;
+            mycombox.ItemsSource = currentList;
+            mycombox.Items.Refresh();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            teamPic.Visibility = Visibility.Visible;       
+            MessageBoxResult exit = MessageBox.Show("Goodbye!", "   ", MessageBoxButton.OK);
+            Close();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            currentList = clear;
+            mycombox.ItemsSource = currentList;
+            mycombox.Items.Refresh();
+           
+        }
+
+        private void mycombox_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            mycombox.Items.Refresh();
+            int ind = mycombox.SelectedIndex;
+            if (currentList[ind].Status == "On Shelf")
+            {
+                MessageBoxResult mmsg = MessageBox.Show("Would you like to check out a book?", "Hello!", MessageBoxButton.YesNoCancel);
+                if (mmsg == MessageBoxResult.Yes)
+                {
+                    Menu.CheckoutBook(currentList[ind]);
+                    Book.BookToTxtFile(Book.BookList);
+                    mycombox.Items.Refresh();
+                    MessageBoxResult checkedoutBook = MessageBox.Show($"You have checked out {currentList[ind].title}  ", "Thank you!", MessageBoxButton.OK);
+                }
+
+                else if (mmsg == MessageBoxResult.No)
+                {
+                    mycombox.Items.Refresh();
+                }
+                else if (mmsg == MessageBoxResult.Cancel)
+                {
+                    mycombox.Items.Refresh();
+                }
+
+            }
+            else if (currentList[ind].Status == "Checked Out")
+            {
+                MessageBoxResult mmsg = MessageBox.Show("Do you want to return the book?", "Hello", MessageBoxButton.YesNoCancel);
+                if (mmsg == MessageBoxResult.Yes)
+                {
+                    Menu.ReturnBook(currentList[ind]);
+                    Book.BookToTxtFile(Book.BookList);
+                    mycombox.Items.Refresh();
+                    MessageBoxResult returnedBook = MessageBox.Show($"You have now returned {currentList[ind].title}", "Thank you!", MessageBoxButton.OK);
+
+
+                }
+            }
+            mycombox.Items.Refresh();
         }
     }
 }

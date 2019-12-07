@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="611" Width="968">
     <Grid Height="580" HorizontalAlignment="Center" Width="968">
-        <Button x:Name="DisplayList" Content="Display Current Invetory
-                " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="133" Click="Button_Click"/>
+        <Button x:Name="DisplayList" Content="Display Current Inventory
+                " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="146" Click="Button_Click"/>
         <Button Content="Search" HorizontalAlignment="Left" Margin="153,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="18" Width="63"/>
 
 
-        <ListView x:Name="mycombox"  HorizontalAlignment="Left" Margin="234,0,0,0" VerticalAlignment="Center" Width="713" Height="508" SelectionChanged="mycombox_SelectionChanged" SelectedItem="Selected">
+        <ListView x:Name="mycombox"  MouseDoubleClick="mycombox_DoubleClick" HorizontalAlignment="Left" Margin="234,0,0,0" VerticalAlignment="Center" Width="713" Height="508"  SelectedItem="Selected">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -48,6 +48,12 @@
         <Label Content="Enter Title" HorizontalAlignment="Left" Margin="16,254,0,0" VerticalAlignment="Top"/>
         <Label Content="Enter Author" HorizontalAlignment="Left" Margin="16,285,0,0" VerticalAlignment="Top"/>
         <Button Content="Donate!" HorizontalAlignment="Left" Margin="132,313,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click_3"/>
+        <Expander Header="Expander" HorizontalAlignment="Left" Height="100" Margin="1306,70,0,0" VerticalAlignment="Top" Width="100">
+            <Grid Background="#FFE5E5E5"/>
+        </Expander>
+        <Button Content="Exit"  HorizontalAlignment="Left" Margin="22,459,0,0" VerticalAlignment="Top" Click="Button_Click_4" Height="73" Width="131" />
+        <Image  Name="teamPic" Visibility="Hidden" HorizontalAlignment="Left" Height="527" Margin="174,18,0,0" VerticalAlignment="Top" Width="718" Source="C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\MVIMG_20191205_212100.jpg"/>
+        <Button Content="Clear Display" HorizontalAlignment="Left" Margin="47,36,0,0" VerticalAlignment="Top" Height="21" Width="146" Click="Button_Click_5"/>
 
 
 
