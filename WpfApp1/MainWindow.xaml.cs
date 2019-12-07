@@ -735,6 +735,8 @@ namespace WpfApp1
             {
                 Book.BookList.Add(new Book(AddTitle.Text, AddAuthor.Text, "On Shelf"));
                 Book.BookToTxtFile(Book.BookList);
+                mycombox.Items.Refresh();
+                MessageBoxResult donatedBook = MessageBox.Show("Thank you for your donation!", "   ", MessageBoxButton.OK);
             }
         }
     }
