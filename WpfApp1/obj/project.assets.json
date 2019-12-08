@@ -8,23 +8,23 @@
     ".NETCoreApp,Version=v3.0": []
   },
   "packageFolders": {
-    "C:\\Users\\rzili\\.nuget\\packages\\": {},
+    "C:\\Users\\Gsoltis\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Gsoltis\\Desktop\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
       "projectName": "WpfApp1",
-      "projectPath": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
-      "packagesPath": "C:\\Users\\rzili\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\obj\\",
+      "projectPath": "C:\\Users\\Gsoltis\\Desktop\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
+      "packagesPath": "C:\\Users\\Gsoltis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gsoltis\\Desktop\\messinGui\\messinGui\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\rzili\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gsoltis\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

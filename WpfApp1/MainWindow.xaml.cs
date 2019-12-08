@@ -114,7 +114,7 @@ namespace WpfApp1
             public static void BookToTxtFile(List<Book> books)
             {
                 StreamWriter bks = new StreamWriter(@"..\..\..\booklist.txt");
-
+                var orderedBookList = books.OrderBy(b => b.Title).ToList(); // Orders books by alpha in Combobox
                 foreach (Book book in books)
                 {
                     string csv = "";
@@ -696,12 +696,12 @@ namespace WpfApp1
             {
                 Book.BookList.Add(new Book(AddTitle.Text, AddAuthor.Text, "On Shelf"));
                 Book.BookToTxtFile(Book.BookList);
-                mycombox.Items.Refresh();
+                //mycombox.Items.Refresh();  --COMMENTED THIS OUT BECAUSE IS IN LINE 706 BELOW
                 MessageBoxResult donatedBook = MessageBox.Show("Thank you for your donation!", "   ", MessageBoxButton.OK);
             }
             AddTitle.Text = "";
             AddAuthor.Text = "";
-            currentList = books;
+            currentList = books.OrderBy(b => b.Title).ToList(); // TITLE IN ALPHA ORDER IN COMBO BOX
             mycombox.ItemsSource = currentList;
             mycombox.Items.Refresh();
         }
