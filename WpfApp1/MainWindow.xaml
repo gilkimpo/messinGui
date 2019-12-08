@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="611" Width="968">
+        Title="Giranijoe Library" Height="611" Width="968">
     <Grid Height="580" HorizontalAlignment="Center" Width="968">
         <Button x:Name="DisplayList" Content="Display Current Inventory
                 " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="146" Click="Button_Click"/>
@@ -52,7 +52,7 @@
             <Grid Background="#FFE5E5E5"/>
         </Expander>
         <Button Content="Exit"  HorizontalAlignment="Left" Margin="22,459,0,0" VerticalAlignment="Top" Click="Button_Click_4" Height="73" Width="131" />
-        <Image  Name="teamPic" Visibility="Hidden" HorizontalAlignment="Left" Height="527" Margin="174,18,0,0" VerticalAlignment="Top" Width="718" Source="C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\MVIMG_20191205_212100.jpg"/>
+        <Image  Name="teamPic" Visibility="Hidden" HorizontalAlignment="Left" Height="527" Margin="174,18,0,0" VerticalAlignment="Top" Width="718" Source="Images/MVIMG_20191205_212100.jpg"/>
         <Button Content="Clear Display" HorizontalAlignment="Left" Margin="47,36,0,0" VerticalAlignment="Top" Height="21" Width="146" Click="Button_Click_5"/>
 
 

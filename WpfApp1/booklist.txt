@@ -1,5 +1,5 @@
-Animal Farm,George Orwell,On Shelf
-Canticle for Leibovitz,Herman Miller,Checked Out,12/18/2019
+Animal Farm,George Orwell,Checked Out,12/21/2019
+Canticle for Leibovitz,Herman Miller,On Shelf
 Crime and Punishment,Fyodor Dostieveski,Checked Out,12/21/2019
 Great Expectations,Charles Dickens,On Shelf
 Harry Potter and the Sorcerer's Stone,J.K Rowling,On Shelf

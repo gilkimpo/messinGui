@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josep\\source\\repos\\WPFApp1\\messinGui\\WpfApp1\\WpfApp1.csproj": {}
+    "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josep\\source\\repos\\WPFApp1\\messinGui\\WpfApp1\\WpfApp1.csproj": {
+    "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josep\\source\\repos\\WPFApp1\\messinGui\\WpfApp1\\WpfApp1.csproj",
+        "projectUniqueName": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
         "projectName": "WpfApp1",
-        "projectPath": "C:\\Users\\josep\\source\\repos\\WPFApp1\\messinGui\\WpfApp1\\WpfApp1.csproj",
-        "packagesPath": "C:\\Users\\josep\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josep\\source\\repos\\WPFApp1\\messinGui\\WpfApp1\\obj\\",
+        "projectPath": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\WpfApp1.csproj",
+        "packagesPath": "C:\\Users\\rzili\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rzili\\source\\repos\\messinGui\\messinGui\\WpfApp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\josep\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rzili\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
