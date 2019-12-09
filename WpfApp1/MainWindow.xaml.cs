@@ -40,6 +40,7 @@ namespace WpfApp1
 
 
         }
+
         //public class Function
         //{
         //    public string DoSomethingPlease { get; set; }
@@ -708,6 +709,7 @@ namespace WpfApp1
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
+            
             teamPic.Visibility = Visibility.Visible;       
             MessageBoxResult exit = MessageBox.Show("Goodbye!", "   ", MessageBoxButton.OK);
             Close();

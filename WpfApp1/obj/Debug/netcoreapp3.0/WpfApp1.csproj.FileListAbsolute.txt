@@ -50,3 +50,4 @@ C:\Users\gilki\source\repos\dec06librarymidtermpull\messinGui\WpfApp1\obj\Debug\
 C:\Users\gilki\source\repos\dec06librarymidtermpull\messinGui\WpfApp1\obj\Debug\netcoreapp3.0\WpfApp1.dll
 C:\Users\gilki\source\repos\dec06librarymidtermpull\messinGui\WpfApp1\obj\Debug\netcoreapp3.0\WpfApp1.pdb
 C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\bin\Debug\netcoreapp3.0\booklist.txt
+C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\bin\Debug\netcoreapp3.0\MVIMG_20191205_212100.jpg

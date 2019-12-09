@@ -1,7 +1,7 @@
 Animal Farm,George Orwell,On Shelf
 Canticle for Leibovitz,Herman Miller,Checked Out,12/18/2019
 Crime and Punishment,Fyodor Dostieveski,Checked Out,12/21/2019
-Great Expectations,Charles Dickens,Checked Out,12/21/2019
+Great Expectations,Charles Dickens,On Shelf
 Harry Potter and the Sorcerer's Stone,J.K Rowling,On Shelf
 HitchHikers Guide to the Galaxy,Douglas Adams,Checked Out,12/21/2019
 Hunger Games,Suzanne Collins,Checked Out,12/20/2019
