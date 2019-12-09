@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="611" Width="968">
+        Title="Giranijoe Library" Height="611" Width="968">
     <Grid Height="580" HorizontalAlignment="Center" Width="968">
         <Button x:Name="DisplayList" Content="Display Current Inventory
-                " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="146" Click="Button_Click"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="153,88,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="18" Width="63"/>
+                " HorizontalAlignment="Left" Margin="47,10,0,0" VerticalAlignment="Top" Height="22" Width="146" Click="Display_List"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="153,88,0,0" VerticalAlignment="Top" Click="Keyword_Search" Height="18" Width="63"/>
 
 
         <ListView x:Name="mycombox"  MouseDoubleClick="mycombox_DoubleClick" HorizontalAlignment="Left" Margin="234,0,0,0" VerticalAlignment="Center" Width="713" Height="508"  SelectedItem="Selected">
@@ -32,10 +32,10 @@
             </ListView.ItemTemplate>
         </ListView>
         <Label Content="Search for a book by Keyword" HorizontalAlignment="Left" Margin="16,57,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="hello" HorizontalAlignment="Left" Margin="16,88,0,0" Text="Enter KeyWord" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="hello_TextChanged"/>
+        <TextBox Name="KeywordSearch" HorizontalAlignment="Left" Margin="16,88,0,0" Text="Enter KeyWord" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Search for a book by Author" HorizontalAlignment="Left" Margin="16,130,0,0" VerticalAlignment="Top" Width="168"/>
-        <TextBox Name="AuthorSearch" HorizontalAlignment="Left" Margin="16,156,0,0" Text="Enter Author" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <Button Content="Search" HorizontalAlignment="Left" Margin="153,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.086,-0.359" Width="63" Click="Button_Click_2"/>
+        <TextBox Name="AuthorSearch" HorizontalAlignment="Left" Margin="16,156,0,0" Text="Enter Author" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Search" HorizontalAlignment="Left" Margin="153,155,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.086,-0.359" Width="63" Click="Author_Search"/>
         <Label Content="Title" HorizontalAlignment="Left" Margin="234,6,0,0" VerticalAlignment="Top" Width="250"/>
         <Label Content="Author" HorizontalAlignment="Left" Margin="489,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.711,-0.122" Width="200"/>
         <Label Content="Status" HorizontalAlignment="Left" Margin="689,5,0,0" VerticalAlignment="Top" Width="80"/>
@@ -47,13 +47,13 @@
         <TextBox Name="AddAuthor" HorizontalAlignment="Left" Margin="93,290,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Enter Title" HorizontalAlignment="Left" Margin="16,254,0,0" VerticalAlignment="Top"/>
         <Label Content="Enter Author" HorizontalAlignment="Left" Margin="16,285,0,0" VerticalAlignment="Top"/>
-        <Button Content="Donate!" HorizontalAlignment="Left" Margin="132,313,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click_3"/>
+        <Button Content="Donate!" HorizontalAlignment="Left" Margin="132,313,0,0" VerticalAlignment="Top" Width="84" Click="Donate_Book"/>
         <Expander Header="Expander" HorizontalAlignment="Left" Height="100" Margin="1306,70,0,0" VerticalAlignment="Top" Width="100">
             <Grid Background="#FFE5E5E5"/>
         </Expander>
-        <Button Content="Exit"  HorizontalAlignment="Left" Margin="22,459,0,0" VerticalAlignment="Top" Click="Button_Click_4" Height="73" Width="131" />
-        <Image  Name="teamPic" Visibility="Hidden" HorizontalAlignment="Left" Height="527" Margin="174,18,0,0" VerticalAlignment="Top" Width="718" Source="C:\Users\josep\source\repos\WPFApp1\messinGui\WpfApp1\MVIMG_20191205_212100.jpg"/>
-        <Button Content="Clear Display" HorizontalAlignment="Left" Margin="47,36,0,0" VerticalAlignment="Top" Height="21" Width="146" Click="Button_Click_5"/>
+        <Button Content="Exit"  HorizontalAlignment="Left" Margin="22,459,0,0" VerticalAlignment="Top" Click="Exit" Height="73" Width="131" />
+        <Image  Name="teamPic" Visibility="Hidden" HorizontalAlignment="Left" Height="527" Margin="174,18,0,0" VerticalAlignment="Top" Width="718" Source="Images/MVIMG_20191205_212100.jpg"/>
+        <Button Content="Clear Display" HorizontalAlignment="Left" Margin="47,36,0,0" VerticalAlignment="Top" Height="21" Width="146" Click="Clear_Display"/>
 
 
 

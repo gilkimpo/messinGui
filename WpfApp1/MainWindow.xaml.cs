@@ -23,41 +23,16 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public List<Team> team = new List<Team>();
-        //public List<Function> function = new List<Function>();
-
         List<Book> books = Book.BookList;
         List<Book> currentList = new List<Book>();
         List<Book> clear = new List<Book>();
         public MainWindow()
         {
-
             InitializeComponent();
            
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            //just making list and class in main for now rather than creating class for itself
-
-
         }
-
-        //public class Function
-        //{
-        //    public string DoSomethingPlease { get; set; }
-        //}
-        //public class Team
-        //{
-        //    public string FirstName { get; set; }
-        //}
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            currentList = books;
-            mycombox.ItemsSource = currentList;
-            mycombox.Items.Refresh();
-        }
-        //testing how to get mult buttons on
-
 
         class Book
         {
@@ -91,8 +66,6 @@ namespace WpfApp1
                 set { dueDate = value; }
             }
 
-
-
             public Book() { }
 
 
@@ -115,7 +88,7 @@ namespace WpfApp1
             public static void BookToTxtFile(List<Book> books)
             {
                 StreamWriter bks = new StreamWriter(@"..\..\..\booklist.txt");
-
+                var orderedBookList = books.OrderBy(b => b.Title).ToList(); // Orders books by alpha in Combobox
                 foreach (Book book in books)
                 {
                     string csv = "";
@@ -163,9 +136,6 @@ namespace WpfApp1
                 sr.Close();
                 return tempBookList;
             }
-
-
-
 
         }
 
@@ -218,51 +188,7 @@ namespace WpfApp1
 
         class Validator : Book
         {
-
-            //Validates user input in beginning of program 
-            public static int inputCheck()
-            {
-                int input = 0;
-                bool repeat = true;
-                while (repeat == true)
-                {
-                    try
-                    {
-                        input = int.Parse(Console.ReadLine());
-                        if (input == 1 || input == 2 || input == 3 || input == 4 || input == 5 || input == 6)
-                        {
-                            repeat = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please enter a valid input (1-5)");
-                            input = int.Parse(Console.ReadLine());
-                        }
-                    }
-
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Please enter a valid input (1-5)");
-
-                    }
-                    catch (ArgumentNullException)
-                    {
-                        Console.WriteLine("Please enter a valid input (1-5)");
-
-                    }
-                    catch (ArgumentException)
-                    {
-                        Console.WriteLine("Please enter a valid input (1-5)");
-
-                    }
-                    catch (Exception)
-                    {
-                        Console.WriteLine("Please enter a valid input (1-5)");
-
-                    }
-                }
-                return input;
-            }
+       
             //Validates whenever you need to check for Author
             public static bool ValidateAuthor(string author, List<Book> books)
             {
@@ -297,7 +223,7 @@ namespace WpfApp1
 
             public static bool ValidateAuthor(string author)
             {
-                Regex authorValid = new Regex(@"[A-Za-z\s\.]");
+                Regex authorValid = new Regex(@"^[A-Za-z\s\.]+$");
 
 
                 if (string.IsNullOrEmpty(author))
@@ -336,7 +262,7 @@ namespace WpfApp1
                     MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
 
                 }
-                catch (NullReferenceException ex)
+                catch (NullReferenceException)
                 {
                     MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
                 }
@@ -372,7 +298,7 @@ namespace WpfApp1
                     MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
 
                 }
-                catch (NullReferenceException ex)
+                catch (NullReferenceException)
                 {
                     MessageBox.Show("Please Enter a Valid Title", "Invalid Input", MessageBoxButton.OK);
                 }
@@ -380,92 +306,10 @@ namespace WpfApp1
                 return false;
             }
 
-            public static string inputCheck(string input)
-            {
-                bool repeat = true;
-                while (repeat == true)
-                {
-                    try
-                    {
-                        if (input == "yes" || input == "no" || input == "y" || input == "n")
-                        {
-                            repeat = false;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please enter a valid input (yes or no)");
-                            input = Console.ReadLine();
-                        }
-                    }
-
-                    catch (FormatException ex)
-                    {
-                        Console.WriteLine("Please enter a valid input (yes or no)");
-
-                    }
-                    catch (ArgumentNullException ex)
-                    {
-                        Console.WriteLine("Please enter a valid (yes or no)");
-
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine("Please enter a valid input (yes or no)");
-
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Please enter a valid input (yes or no))");
-
-                    }
-                }
-                return input;
-            }
-
         }
 
         class Menu : Book
         {
-
-
-            public static void DisplayBooks(List<Book> bookList)
-            {
-
-                Console.WriteLine($"{"Title",-40}{"Author",-25}{"Availability",-20} {"Due Date",-20}\n------------------------------------------------------------------------------------------------");
-                foreach (Book book in bookList)
-                {
-                    string available = "";
-                    string tooLong = "";
-                    if (book.Status == "On Shelf")
-                    {
-                        available = "On Shelf";
-                    }
-                    else if (book.Status == "Checked Out")
-                    {
-                        available = "Checked Out";
-                    }
-
-                    if (book.Title.Length > 25 && available == "On Shelf")
-                    {
-                        tooLong = $"{book.Title.Substring(0, 24)}...";
-                        Console.WriteLine($"{tooLong,-40}{book.Author,-25}{available,-20}");
-                    }
-                    else if (book.Title.Length > 25 && available == "Checked Out")
-                    {
-                        tooLong = $"{book.Title.Substring(0, 24)}...";
-                        Console.WriteLine($"{tooLong,-40}{book.Author,-25}{available,-20}{book.DueDate,-20}");
-                    }
-                    else if (available == "Checked Out")
-                    {
-                        Console.WriteLine($"{book.Title,-40}{book.Author,-25}{available,-20}{book.DueDate,-20}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{book.Title,-40}{book.Author,-25}{available,-20}");
-
-                    }
-                }
-            }
 
             public static void CheckoutBook(Book book)
             {
@@ -481,192 +325,16 @@ namespace WpfApp1
 
             }
 
-            //public static void Options()
-            //{
-            //    BookList.Sort((a, b) => a.Title.CompareTo(b.Title));
-            //    Console.WriteLine("\nWelcome to the library. Please choose a number from the following menu");
-            //    Console.WriteLine("1. Search for a book to check out by AUTHOR NAME.");
-            //    Console.WriteLine("2. Search for a book to check out by a WORD IN THE TITLE.");
-            //    Console.WriteLine("3. Return a book.");
-            //    Console.WriteLine("4. Display Current Book List.");
-            //    Console.WriteLine("5. Donate a Book.");
-            //    Console.WriteLine("6. Exit the library app");
-            //}
-
-            //public static void StartMenu()
-            //{
-            //    Options();
-            //    int optionInput = Validator.inputCheck();
-
-            //    while (optionInput != 6)
-            //    {
-            //        if (optionInput == 1)
-            //        {
-            //            #region CALL METHOD to check out book by Author Name
-            //            Console.WriteLine("Choose a book to check out by the Author's Name.");
-
-            //            string reply = Console.ReadLine();
-            //            string userInput = Validator.ValidateAuthor(reply, BookList);
-
-            //            Book myBook = Search.GetBookByAuthorName(userInput);
-
-            //            Console.WriteLine($"\nFOUND BOOK BY {myBook.Author}: {myBook.Title}");
-
-
-            //            if (myBook.Status == 0)  // 0 = not checked out
-            //            {
-            //                Console.WriteLine($"\nDo you want to check out {myBook.Title} by {myBook.Author}?");
-
-            //                string wantCheckOut = Validator.inputCheck(Console.ReadLine());
-            //                if (wantCheckOut == "yes")
-            //                {
-            //                    Menu.CheckoutBook(myBook);
-            //                    Console.WriteLine($"\nYOU ARE CHECKING OUT: {myBook.Title} by {myBook.Author}\nThe due date for {myBook.Title} is: {myBook.DueDate}");
-            //                    Book.BookToTxtFile(BookList);
-            //                }
-            //                else
-            //                {
-            //                    Console.WriteLine("Ok");
-            //                }
-
-            //            }
-            //            else  //1 = book is already checked out 
-            //            {
-            //                Console.WriteLine($"\n{myBook.Title} is currently checked out. It is due back on {myBook.DueDate}.");
-            //            }
-
-            //            #endregion
-            //        }
-            //        else if (optionInput == 2)
-            //        {
-            //            #region CALL METHOD to GetBookListByKeyword
-            //            Console.WriteLine("Choose a book to check out by a word or letter in the book's title.");
-            //            string reply = Console.ReadLine();
-            //            //string bookSearch = Validator.ValidateTitle(reply, BookList);
-            //            List<Book> MatchingBooklist = Search.GetBookListByKeyword(bookSearch);
-
-            //            if (MatchingBooklist != null && MatchingBooklist.Count > 0)
-            //            {
-            //                Console.WriteLine($"\nBooks matching your search term '{bookSearch}' are listed below:\n");
-
-            //                DisplayBooks(MatchingBooklist);
-
-            //                foreach (Book b in MatchingBooklist)
-            //                {
-
-            //                    if (b.Status == 0)
-            //                    {
-            //                        Console.WriteLine($"\nWould you like to check out {b.Title}? yes or no");
-            //                        string userReply = Console.ReadLine();
-            //                        userReply = Validator.inputCheck(userReply);
-
-            //                        if (userReply == "yes" || userReply == "y")
-            //                        {
-            //                            Menu.CheckoutBook(b);
-            //                            Console.WriteLine($"\nYou are checking out: {b.Title}.\nThe due date for {b.Title} is: {DateTime.Now.AddDays(14).ToString("MM/dd/yyyy")}");
-            //                        }
-            //                        else if (userReply == "no" || userReply == "n")
-            //                        {
-            //                            Console.WriteLine($"\n{b.Title} not checked out.");
-            //                        }
-            //                    }
-            //                    Book.BookToTxtFile(BookList);
-
-            //                }
-
-            //            }
-            //            #endregion
-            //        }
-            //        else if (optionInput == 3)
-            //        {
-            //            #region RETURN BOOK
-            //            Console.WriteLine("Please enter the Title of the book you are returning?");
-            //            string bookReturn = Console.ReadLine();
-
-            //            //string bookReturned = Validator.ValidateTitle(bookReturn, BookList);
-
-            //            List<Book> returnBook = Search.GetBookListByKeyword(bookReturned);
-            //            Console.WriteLine($"\nThe Books matching your query of '{bookReturned}' are below:\n");
-            //            DisplayBooks(returnBook);
-            //            foreach (Book b in returnBook)
-            //            {
-
-            //                if (b.Status == 1)
-            //                {
-            //                    Console.WriteLine($"\nWould you like to Return {b.Title}? yes or no");
-            //                    string userReply = Console.ReadLine();
-            //                    userReply = Validator.inputCheck(userReply);
-
-
-            //                    if (userReply == "yes" || userReply == "y")
-            //                    {
-            //                        Menu.ReturnBook(b);
-            //                        Console.WriteLine($"\n{b.Title} returned.");
-
-            //                    }
-            //                    else if (userReply == "no" || userReply == "n")
-            //                    {
-            //                        Console.WriteLine($"\n{b.Title} will not be returned.\nBook is due {b.DueDate}.");
-            //                    }
-            //                }
-
-            //                Book.BookToTxtFile(BookList);
-
-            //            }
-
-            //        }
-            //        #endregion
-            //        else if (optionInput == 4)
-            //        {
-            //            DisplayBooks(BookList);
-            //        }
-            //        else if (optionInput == 5)
-            //        {
-            //            Menu.AddBook();
-            //        }
-
-            //        Options();
-            //        optionInput = Validator.inputCheck();
-
-            //    }
-
-
-            //}
-
-            //public static void AddBook()
-            //{
-            //    Console.WriteLine("Would you like to donate a book? (Yes or No)");
-            //    string reply = Validator.inputCheck(Console.ReadLine());
-            //    if (reply == "yes" || reply == "y")
-            //    {
-            //        Console.WriteLine("What is the title?");
-            //        string title = Validator.ValidateTitle();
-            //        Console.WriteLine("Who is the author?");
-            //        string author = Validator.ValidateAuthor();
-            //        BookList.Add(new Book(title, author, 0));
-            //    }
-            //    else if (reply == "no" || reply == "n")
-            //    {
-            //        Console.WriteLine("Scruffy Nerf Herder");
-            //    }
-
-            //    BookToTxtFile(BookList);
-
-            //}
         }
 
-
-        private void hello_TextChanged(object sender, TextChangedEventArgs e)
+        private void Display_List(object sender, RoutedEventArgs e)
         {
-
+            currentList = books.OrderBy(b => b.Title).ToList();
+            mycombox.ItemsSource = currentList;
+            mycombox.Items.Refresh();
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+    
+        private void Author_Search(object sender, RoutedEventArgs e)
         {
             mycombox.Items.Refresh();
             var text = AuthorSearch.Text;
@@ -678,36 +346,36 @@ namespace WpfApp1
             AuthorSearch.Text = "";
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Keyword_Search(object sender, RoutedEventArgs e)
         {
             mycombox.Items.Refresh();
-            var text = hello.Text;
+            var text = KeywordSearch.Text;
             if (Validator.ValidateTitle(text, Book.BookList))
             {
                 currentList = Search.GetBookListByKeyword(text);
                 mycombox.ItemsSource = currentList;
             }
-            hello.Text = "";
+            KeywordSearch.Text = "";
 
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Donate_Book(object sender, RoutedEventArgs e)
         {
             if (Validator.ValidateTitle(AddTitle.Text) && Validator.ValidateAuthor(AddAuthor.Text))
             {
                 Book.BookList.Add(new Book(AddTitle.Text, AddAuthor.Text, "On Shelf"));
                 Book.BookToTxtFile(Book.BookList);
-                mycombox.Items.Refresh();
+                //mycombox.Items.Refresh();  --COMMENTED THIS OUT BECAUSE IS IN LINE 706 BELOW
                 MessageBoxResult donatedBook = MessageBox.Show("Thank you for your donation!", "   ", MessageBoxButton.OK);
+                currentList = books.OrderBy(b => b.Title).ToList();
             }
-            AddTitle.Text = "";
-            AddAuthor.Text = "";
-            currentList = books;
+           
+            // TITLE IN ALPHA ORDER IN COMBO BOX
             mycombox.ItemsSource = currentList;
             mycombox.Items.Refresh();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Exit(object sender, RoutedEventArgs e)
         {
             
             teamPic.Visibility = Visibility.Visible;       
@@ -715,7 +383,7 @@ namespace WpfApp1
             Close();
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Clear_Display(object sender, RoutedEventArgs e)
         {
             currentList = clear;
             mycombox.ItemsSource = currentList;
